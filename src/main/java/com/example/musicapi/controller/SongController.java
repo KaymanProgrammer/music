@@ -29,17 +29,15 @@ public class SongController {
     public String getSong(Model model, @RequestParam(required = false, defaultValue = "") String term){
 
         Song song = new Song();
-//        Song song = new Song();
+
 
         if (!term.isEmpty()){
             song = songService.findSong(term);
         }
-//        if (!trackId.isEmpty()){
-//            song = songService.getSongById(trackId);
-//        }
+
 
         model.addAttribute("song", song);
-//        model.addAttribute("song", song);
+
 
         return "home";
     }
@@ -49,5 +47,7 @@ public class SongController {
         model.addAttribute("editedSong", songService.findSong(trackId).getResults().get(0));
         return "song-details";
     }
+
+
 
 }

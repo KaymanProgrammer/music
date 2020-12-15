@@ -15,7 +15,7 @@
 <table class="table table-striped table-dark">
     <tr>
         <td>Artist:</td>
-        <td th:text="${editedSong.getArtistName()}"></td>
+        <td ><a th:href="${editedSong.findArtist()}" th:text="${editedSong.getArtistName()}"></a></td>
     </tr>
     <tr>
         <td>Title:</td>
@@ -23,7 +23,7 @@
     </tr>
     <tr>
         <td>Collection:</td>
-        <td th:text="${editedSong.getCollectionName()}"></td>
+        <td><a th:href="${editedSong.findCollection()}" th:text="${editedSong.getCollectionName()}"></a> </td>
     </tr>
     <tr>
 

@@ -49,11 +49,13 @@ public class SongServiceImpl implements SongService {
         messageConverters.add(converter);
         restTemplate.setMessageConverters(messageConverters);
 
-        Song song = restTemplate.getForObject("https://itunes.apple.com/search?term=" + title + "&country=US&limit=15", Song.class);
+        Song song = restTemplate.getForObject("https://itunes.apple.com/search?term=" + title + "&country=US&limit=50", Song.class);
 
 
         return song;
     }
+
+
 
 //    @Override
 //    public Song getSongById(String trackId) {

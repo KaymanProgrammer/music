@@ -116,6 +116,17 @@ public class Result {
         return "/track/" + trackId;
     }
 
+    public String findArtist(){
+        return "/?term=" + artistName;
+    }
+
+    public String findCollection(){
+        return "/?term=" + collectionName;
+    }
+
+
+
+
     @JsonProperty("wrapperType")
     public String getWrapperType() {
         return wrapperType;
