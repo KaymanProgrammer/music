@@ -112,6 +112,10 @@ public class Result {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    public String getTrackUrl() {
+        return "/track/" + trackId;
+    }
+
     @JsonProperty("wrapperType")
     public String getWrapperType() {
         return wrapperType;

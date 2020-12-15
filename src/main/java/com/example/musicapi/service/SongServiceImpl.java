@@ -2,13 +2,17 @@ package com.example.musicapi.service;
 
 import com.example.musicapi.model.Result;
 import com.example.musicapi.model.Song;
+import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.minidev.json.writer.JsonReader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.springframework.boot.web.server.MimeMappings;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConversionException;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.cbor.MappingJackson2CborHttpMessageConverter;
 import org.springframework.http.converter.json.JsonbHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -20,6 +24,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -33,8 +39,19 @@ public class SongServiceImpl implements SongService {
     public Song findSong(String title) {
         RestTemplate restTemplate = new RestTemplate();
 
-        Song song = restTemplate.getForObject("https://itunes.apple.com/search?term" + title, Song.class);
-        
+        List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
+//Add the Jackson Message converter
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+
+// Note: here we are making this converter to process any kind of response,
+// not only application/*json, which is the default behaviour
+        converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
+        messageConverters.add(converter);
+        restTemplate.setMessageConverters(messageConverters);
+
+        Song song = restTemplate.getForObject("https://itunes.apple.com/search?term=" + title + "&country=US&limit=15", Song.class);
+
+
         return song;
     }
 

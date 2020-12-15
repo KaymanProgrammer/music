@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -37,10 +38,16 @@ public class SongController {
 //            song = songService.getSongById(trackId);
 //        }
 
-        model.addAttribute("songsList", song);
+        model.addAttribute("song", song);
 //        model.addAttribute("song", song);
 
         return "home";
+    }
+
+    @GetMapping("/track/{trackId}")
+    public String getDetails(Model model, @PathVariable String trackId){
+        model.addAttribute("editedSong", songService.findSong(trackId).getResults().get(0));
+        return "song-details";
     }
 
 }
