@@ -56,8 +56,15 @@ public class SongController {
     @GetMapping("/favourites/")
     public String getFavourites(Model model){
         model.addAttribute("favourites", favourites);
+
+
+
         return "favourites";
     }
+
+
+
+
 
 
 

@@ -1,5 +1,6 @@
 package com.example.musicapi.service;
 
+import com.example.musicapi.model.Result;
 import com.example.musicapi.model.Song;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -16,6 +17,8 @@ import static java.util.Arrays.stream;
 
 @Service
 public class SongServiceImpl implements SongService {
+
+
 
     @Override
     public Song findSong(String title) {
