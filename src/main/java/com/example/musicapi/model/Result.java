@@ -3,6 +3,7 @@ package com.example.musicapi.model;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -109,6 +110,8 @@ public class Result {
     private String primaryGenreName;
     @JsonProperty("isStreamable")
     private Boolean isStreamable;
+
+
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -123,6 +126,8 @@ public class Result {
     public String findCollection(){
         return "/?term=" + collectionName;
     }
+
+    
 
 
 

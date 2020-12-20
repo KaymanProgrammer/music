@@ -11,6 +11,7 @@
 </head>
 <body>
 <h1>Song Details</h1>
+
 <div class="main">
 <table class="table table-striped table-dark">
     <tr>
@@ -34,7 +35,7 @@
     </tr>
     <tr class="col-12">
 
-        <td colspan="2" class="text-center"><embed th:src="${editedSong.getPreviewUrl()}" width="100%" height="40px"></td>
+        <td colspan="2" class="text-center"><embed th:src="${editedSong.getPreviewUrl()}" type="audio/aac"   scale="tofit" width="500px" height="80px"></td>
     </tr>
 </table>
 </div>

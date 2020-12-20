@@ -19,6 +19,7 @@ import java.util.List;
 public class SongController {
 
     private SongService songService;
+    private List<Result> favourites;
 
     @Autowired
     public SongController(SongService songService){
@@ -44,8 +45,18 @@ public class SongController {
 
     @GetMapping("/track/{trackId}")
     public String getDetails(Model model, @PathVariable String trackId){
+        model.addAttribute("favourites", favourites);
         model.addAttribute("editedSong", songService.findSong(trackId).getResults().get(0));
         return "song-details";
+    }
+
+
+
+
+    @GetMapping("/favourites/")
+    public String getFavourites(Model model){
+        model.addAttribute("favourites", favourites);
+        return "favourites";
     }
 
 
