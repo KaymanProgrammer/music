@@ -10,14 +10,12 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<h1>Title</h1>
+<a th:href="@{/}">
+    <h1>Spotify API App</h1>
+</a>
 <form th:action="@{/}" th:method="get">
     <input type="text" name="term">
     <input type="submit" value="Search for music">
-
-
-
-
 </form>
 
 <div class="row">
@@ -50,16 +48,6 @@
             <thead class="thead-light">
 
             </thead>
-            <!--                    <tbody th:each="i : ${#numbers.sequence(0, weather.getConsolidatedWeather().size() - 1)}">-->
-            <!--                        <tr th:each="w : ${weather.getConsolidatedWeather().get(i)}">-->
-            <!--                            <td th:text="${w.getApplicableDate()}" />-->
-            <!--                            <td th:text="${w.getWeatherStateName()}"/>-->
-            <!--                            <td th:text="${#numbers.formatDecimal(w.getMinTemp(), 1, 2)}" />-->
-            <!--                            <td th:text="${#numbers.formatDecimal(w.getMaxTemp(), 1, 2)}" />-->
-            <!--                            <td th:text="${#numbers.formatDecimal(w.getWindSpeed(), 1, 2)}" />-->
-
-
-            <!--                            <td th:text="${w.getAirPressure()}" />-->
             </tr>
             </tbody>
         </table>

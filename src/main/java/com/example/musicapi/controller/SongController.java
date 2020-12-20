@@ -17,9 +17,7 @@ import java.util.List;
 
 @Controller
 public class SongController {
-
     private SongService songService;
-    private List<Result> favourites;
 
     @Autowired
     public SongController(SongService songService){
@@ -31,41 +29,34 @@ public class SongController {
 
         Song song = new Song();
 
-
         if (!term.isEmpty()){
             song = songService.findSong(term);
         }
 
-
         model.addAttribute("song", song);
-
-
         return "home";
     }
 
     @GetMapping("/track/{trackId}")
     public String getDetails(Model model, @PathVariable String trackId){
-        model.addAttribute("favourites", favourites);
+        model.addAttribute("favourites", songService.getFavorites());
         model.addAttribute("editedSong", songService.findSong(trackId).getResults().get(0));
         return "song-details";
     }
 
-
-
-
-    @GetMapping("/favourites/")
+    @GetMapping("/favourites")
     public String getFavourites(Model model){
-        model.addAttribute("favourites", favourites);
 
-
+        model.addAttribute("favourites", songService.getFavorites());
 
         return "favourites";
     }
 
-
-
-
-
-
+    @GetMapping("/track/{trackId}/addFavorite")
+    public String setFavorite(@PathVariable String trackId) {
+        Result track = songService.findSong(trackId).getResults().get(0);
+        songService.addToFavorite(track);
+        return "redirect:/track/{trackId}";
+    }
 
 }

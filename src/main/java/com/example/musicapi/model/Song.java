@@ -24,8 +24,6 @@ public class Song {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-
-
     @JsonProperty("resultCount")
     public Integer getResultCount() {
         return resultCount;

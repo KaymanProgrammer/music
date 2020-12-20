@@ -1,7 +1,5 @@
 package com.example.musicapi.model;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -111,7 +109,6 @@ public class Result {
     @JsonProperty("isStreamable")
     private Boolean isStreamable;
 
-
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -126,9 +123,6 @@ public class Result {
     public String findCollection(){
         return "/?term=" + collectionName;
     }
-
-    
-
 
 
 

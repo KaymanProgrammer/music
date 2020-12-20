@@ -3,21 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Spotify API App - favorite</title>
     <meta charset="UTF-8">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<h1>Music</h1>
+<a th:href="@{/}">
+    <h1>Spotify API App</h1>
+</a>
+<h2>Music</h2>
 <form th:action="@{/}" th:method="get">
     <input type="text" name="term">
     <input type="submit" value="Search for music">
-
-
-
-
 </form>
 
 <div class="row">
@@ -32,7 +31,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr th:each="result : ${song.getResults()}">
+                <tr th:each="result : ${favourites}">
                     <td th:text="${result.getTrackId()}"></td>
                     <td th:text="${result.getArtistName()}"></td>
                     <td th:text="${result.getTrackName()}"></td>
@@ -42,7 +41,6 @@
         </table>
     </div>
     <div class="col">
-
         <h2 class="text-center" style="margin: 15px">
 
         </h2>
@@ -50,23 +48,12 @@
             <thead class="thead-light">
 
             </thead>
-            <!--                    <tbody th:each="i : ${#numbers.sequence(0, weather.getConsolidatedWeather().size() - 1)}">-->
-            <!--                        <tr th:each="w : ${weather.getConsolidatedWeather().get(i)}">-->
-            <!--                            <td th:text="${w.getApplicableDate()}" />-->
-            <!--                            <td th:text="${w.getWeatherStateName()}"/>-->
-            <!--                            <td th:text="${#numbers.formatDecimal(w.getMinTemp(), 1, 2)}" />-->
-            <!--                            <td th:text="${#numbers.formatDecimal(w.getMaxTemp(), 1, 2)}" />-->
-            <!--                            <td th:text="${#numbers.formatDecimal(w.getWindSpeed(), 1, 2)}" />-->
 
-
-            <!--                            <td th:text="${w.getAirPressure()}" />-->
             </tr>
             </tbody>
         </table>
-
     </div>
 </div>
 </div>
-
 </body>
 </html>

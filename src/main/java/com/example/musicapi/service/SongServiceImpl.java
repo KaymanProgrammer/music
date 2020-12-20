@@ -18,35 +18,39 @@ import static java.util.Arrays.stream;
 @Service
 public class SongServiceImpl implements SongService {
 
+    private List<Result> favorites;
 
+    public SongServiceImpl() {
+        favorites = new ArrayList<>();
+    }
 
     @Override
     public Song findSong(String title) {
         RestTemplate restTemplate = new RestTemplate();
 
         List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
-//Add the Jackson Message converter
+
+        //Add the Jackson Message converter
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
 
-// Note: here we are making this converter to process any kind of response,
-// not only application/*json, which is the default behaviour
+        // Note: here we are making this converter to process any kind of response,
+        // not only application/*json, which is the default behaviour
         converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
         messageConverters.add(converter);
         restTemplate.setMessageConverters(messageConverters);
 
         Song song = restTemplate.getForObject("https://itunes.apple.com/search?term=" + title + "&country=US&limit=50", Song.class);
 
-
         return song;
     }
 
+    @Override
+    public void addToFavorite(Result result) {
+        favorites.add(result);
+    }
 
-
-
-//    @Override
-//    public Song getSongById(String trackId) {
-//        RestTemplate restTemplate = new RestTemplate();
-//        return  restTemplate.getForObject("https://itunes.apple.com/search?term=" + trackId + "&entity=song", Song.class);
-//
-//    }
+    @Override
+    public List<Result> getFavorites() {
+        return favorites;
+    }
 }
